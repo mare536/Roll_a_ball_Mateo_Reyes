@@ -63,7 +63,15 @@ public class PlayerController : MonoBehaviour
             isGameOver = true;
             Destroy(gameObject);
             winTextObject.SetActive(true);
-            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "Has Perdido!";
+        }
+        if (collision.gameObject.CompareTag("Lava"))
+        {
+            if (isGameOver) return;
+            isGameOver = true;
+            Destroy(gameObject);
+            winTextObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "Te Has Quemado!";
         }
     }
 
