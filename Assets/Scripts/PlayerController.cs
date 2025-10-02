@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     // Referencia al objeto de texto que muestra el mensaje de victoria.
     public GameObject winTextObject;
 
+    // Variable que indica si el juego ha terminado.
     public static bool isGameOver = false;
 
     // Start se llama antes de la primera actualización del frame.
@@ -57,21 +58,23 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Si el jugador colisiona con un enemigo, termina el juego y muestra el mensaje de derrota.
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            if (isGameOver) return;
-            isGameOver = true;
-            Destroy(gameObject);
-            winTextObject.SetActive(true);
-            winTextObject.GetComponent<TextMeshProUGUI>().text = "Has Perdido!";
+            if (isGameOver) return; // Si el juego ya terminó, no hace nada
+            isGameOver = true; // Marca el juego como terminado
+            Destroy(gameObject); // Destruye el objeto jugador
+            winTextObject.SetActive(true); // Muestra el texto de resultado
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "Has Perdido!"; // Cambia el texto a "Has Perdido!"
         }
+        // Si el jugador colisiona con la lava, termina el juego y muestra el mensaje de quemado.
         if (collision.gameObject.CompareTag("Lava"))
         {
-            if (isGameOver) return;
-            isGameOver = true;
-            Destroy(gameObject);
-            winTextObject.SetActive(true);
-            winTextObject.GetComponent<TextMeshProUGUI>().text = "Te Has Quemado!";
+            if (isGameOver) return; // Si el juego ya terminó, no hace nada
+            isGameOver = true; // Marca el juego como terminado
+            Destroy(gameObject); // Destruye el objeto jugador
+            winTextObject.SetActive(true); // Muestra el texto de resultado
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "Te Has Quemado!"; // Cambia el texto a "Te Has Quemado!"
         }
     }
 
